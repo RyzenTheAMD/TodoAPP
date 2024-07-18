@@ -8,9 +8,8 @@
 
   <ul class="list-group">
     <li *ngFor="let todo of todos" class="list-group-item">
-      <input class="form-check-input me-1" type="checkbox" value="">
+      <input class="form-check-input me-1" type="checkbox" value="todo.done">
       <label class="form-check-label " >{{todo.title}}</label>
     </li>
-
   </ul>
 </div>

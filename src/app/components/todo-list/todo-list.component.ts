@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForOf} from "@angular/common";
 import {Todo} from "../../models/todo";
+import {TodoService} from "../../services/todo.service";
 
 @Component({
   selector: 'app-todo-list',
@@ -21,12 +22,10 @@ export class TodoListComponent implements OnInit {
     'Send email',
     'Go to GYM'
   ];
+
+  todos: Todo[] = []
+
   placeholder: string = '';
-  todos = [
-    new Todo( '1', 'Go to gym', false),
-  ];
-
-
   getRandomTask(): string {
     const randomIndex = Math.floor(Math.random() * this.todoItems.length);
     return this.todoItems[randomIndex];
@@ -34,5 +33,9 @@ export class TodoListComponent implements OnInit {
 
   ngOnInit(): void {
     this.placeholder = this.getRandomTask();
+    this.todos = this.todoService.getAll()
+  }
+
+  constructor(private todoService: TodoService) {
   }
 }
