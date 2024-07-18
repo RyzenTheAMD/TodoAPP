@@ -1,0 +1,16 @@
+<div class="container-sm border border-dark rounded mt-4 p-4">
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" [placeholder]="placeholder" aria-describedby="button-addon2">
+    <button class="btn" type="button" id="button-addon2">Button</button>
+  </div>
+
+  <h5>Todo items</h5>
+
+  <ul class="list-group">
+    <li *ngFor="let todo of todos" class="list-group-item">
+      <input class="form-check-input me-1" type="checkbox" value="">
+      <label class="form-check-label " >{{todo.title}}</label>
+    </li>
+
+  </ul>
+</div>
