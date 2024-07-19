@@ -33,9 +33,19 @@ export class TodoListComponent implements OnInit {
 
   ngOnInit(): void {
     this.placeholder = this.getRandomTask();
-    this.todos = this.todoService.getAll()
+    this.fetchTodos()
   }
 
   constructor(private todoService: TodoService) {
+  }
+
+  OnAdd(value: string) {
+    const todo = new Todo('-1', value, false)
+    const newTodo = this.todoService.create(todo);
+    this.todos.push(newTodo)
+  }
+
+  fetchTodos(){
+    this.todos = this.todoService.getAll()
   }
 }

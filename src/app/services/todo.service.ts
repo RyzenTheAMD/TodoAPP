@@ -13,6 +13,12 @@ export class TodoService {
   constructor() { }
 
   getAll(){
-    return this.todos;
+    return [...this.todos];
+  }
+  create(todo: Todo) : Todo{
+    const id = new Date().getDate().toString();
+    const updatedTodo = {...todo, id: id};
+    this.todos.push(updatedTodo);
+    return updatedTodo;
   }
 }
