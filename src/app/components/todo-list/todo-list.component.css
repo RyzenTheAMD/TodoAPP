@@ -1,4 +1,4 @@
-.btn {
+.btns {
   text-decoration: none;
   border: none;
   padding: 12px 40px;
@@ -12,7 +12,11 @@
 }
 /* Adding transformation when the button is active */
 
-.btn:active {
+.btns:active {
   background-color: #22c122;
   color: white;
+}
+
+.Inp{
+  outline: none;
 }

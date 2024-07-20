@@ -40,9 +40,18 @@ export class TodoListComponent implements OnInit {
   }
 
   OnAdd(value: string) {
-    const todo = new Todo('-1', value, false)
+    const todo = new Todo('-1', value, false, false)
     const newTodo = this.todoService.create(todo);
     this.todos.push(newTodo)
+  }
+  OnDelete(id: string) {
+    if (confirm('Are you sure you want to delete it?')) {
+      const DeletedTodo = this.todoService.delete(id)
+      if (DeletedTodo) {
+        const index = this.todos.findIndex(todo => todo.id === id)
+        this.todos.splice(index, 1);
+      }
+    }
   }
 
   fetchTodos(){

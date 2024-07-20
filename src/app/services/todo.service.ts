@@ -6,9 +6,9 @@ import {Todo} from "../models/todo";
 })
 export class TodoService {
   todos = [
-    new Todo( '1', 'Go to gym', true),
-    new Todo( '2', 'Install game', false),
-    new Todo( '3', 'Send email', true)
+    new Todo( '1', 'Go to gym', true, false),
+    new Todo( '2', 'Install game', false, false),
+    new Todo( '3', 'Send email', false, false)
   ];
   constructor() { }
 
@@ -20,5 +20,12 @@ export class TodoService {
     const updatedTodo = {...todo, id: id};
     this.todos.push(updatedTodo);
     return updatedTodo;
+  }
+
+  delete(id: string)   {
+    const index = this.todos.findIndex(todo => todo.id === id);
+    const deletedTodo = this.todos[index]
+    this.todos.splice(index, 1);
+    return deletedTodo.id
   }
 }
