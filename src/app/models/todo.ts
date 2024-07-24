@@ -1,4 +1,4 @@
 export class Todo {
-constructor( public id: string, public title: string, public done: boolean, public idEditing: boolean) {
+constructor( public id: string, public title: string, public done: boolean, public isEditing: boolean) {
 }
 }

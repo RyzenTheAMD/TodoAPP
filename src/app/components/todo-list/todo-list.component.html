@@ -12,15 +12,23 @@
       <div>
         <input class="form-check-input me-1" type="checkbox" [checked]='todo.done'>
         <input class="form-check-label Inp"
-               [readOnly]="!todo.idEditing"
+               [ngClass]="{'todo-title--readonly' : !todo.isEditing}"
+               [readOnly]="!todo.isEditing"
                [value]="todo.title"
+               #todoTitle
         />
       </div>
 
-      <div>
-        <i class="bi bi-pencil"></i>
-        <i class="bi bi-trash" (click)="OnDelete(todo.id)"></i>
+      <div *ngIf="todo.isEditing" class="action-container">
+        <i class="bi bi-x-circle me-2 cancel-icon" (click)="OnCancel(todo)"></i>
+        <i class="bi bi-floppy save-icon" (click)="OnSave(todo, todoTitle.value)"></i>
       </div>
+
+      <div *ngIf="!todo.isEditing" class="action-container">
+        <i class="bi bi-pencil me-2 edit-icon" (click)="OnEdit(todo)"></i>
+        <i class="bi bi-trash delete-icon" (click)="OnDelete(todo.id)"></i>
+      </div>
+
     </li>
   </ul>
 

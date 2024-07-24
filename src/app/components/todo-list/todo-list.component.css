@@ -17,6 +17,7 @@
   color: white;
 }
 
-.Inp{
-  outline: none;
+.todo-title--readonly{
+  border: none;
+           outline: none;
 }

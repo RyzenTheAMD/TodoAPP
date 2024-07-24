@@ -5,18 +5,14 @@ import {Todo} from "../models/todo";
   providedIn: 'root'
 })
 export class TodoService {
-  todos = [
-    new Todo( '1', 'Go to gym', true, false),
-    new Todo( '2', 'Install game', false, false),
-    new Todo( '3', 'Send email', false, false)
-  ];
+  todos = [] as Todo[];
   constructor() { }
 
   getAll(){
     return [...this.todos];
   }
   create(todo: Todo) : Todo{
-    const id = new Date().getDate().toString();
+    const id = new Date().getTime().toString();
     const updatedTodo = {...todo, id: id};
     this.todos.push(updatedTodo);
     return updatedTodo;
@@ -27,5 +23,11 @@ export class TodoService {
     const deletedTodo = this.todos[index]
     this.todos.splice(index, 1);
     return deletedTodo.id
+  }
+
+  update(todo: Todo) {
+    const index = this.todos.findIndex(item => item.id === todo.id);
+    this.todos[index] = {...todo};
+    return this.todos[index]
   }
 }
