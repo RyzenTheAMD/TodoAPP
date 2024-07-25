@@ -1,20 +1,18 @@
 <div class="container-sm border border-dark rounded mt-4 p-4">
   <div class="input-group mb-3">
-    <input  #inputElement type="text" class="form-control" [placeholder]="placeholder" aria-describedby="button-addon2">
-    <button class="btns" type="button" id="button-addon2" (click)="OnAdd(inputElement.value)">Button</button>
+    <input  #inputElement type="text" class="form-control" [placeholder]="placeholder" (keyup.enter)="OnAdd(inputElement)" aria-describedby="button-addon2">
+    <button class="btns" type="button" id="button-addon2" (click)="OnAdd(inputElement)">Button</button>
   </div>
-
   <h5>Todo items</h5>
-
-  <ul class="list-group">
-
+  <ul class="list-group todo-items__container">
     <li *ngFor="let todo of todos" class="list-group-item d-flex justify-content-between">
-      <div>
-        <input class="form-check-input me-1" type="checkbox" [checked]='todo.done'>
-        <input class="form-check-label Inp"
+      <div class="w-75">
+        <input class="form-check-input me-1" type="checkbox" [(ngModel)]="todo.done" (ngModelChange)="onDoneChange(todo)">
+        <input class="form-check-label Inp w-75"
                [ngClass]="{'todo-title--readonly' : !todo.isEditing}"
                [readOnly]="!todo.isEditing"
                [value]="todo.title"
+               (keyup.enter)="OnSave(todo, todoTitle.value)"
                #todoTitle
         />
       </div>
