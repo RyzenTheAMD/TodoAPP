@@ -205,4 +205,11 @@ export class TodoListComponent implements OnInit {
       this.todos[index] = {...updatedTodo}
     }
   }
+
+  onDeleteAll() {
+    if (this.todos.length == 0) return
+    if(!confirm('Are you sure you want delete ALL todos?')) return
+    this.todos = []
+    this.todoService.clearTodos()
+  }
 }

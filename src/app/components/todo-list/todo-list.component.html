@@ -1,33 +1,55 @@
-<div class="container-sm border border-dark rounded mt-4 p-4">
-  <div class="input-group mb-3">
-    <input  #inputElement type="text" class="form-control" [placeholder]="placeholder" (keyup.enter)="OnAdd(inputElement)" aria-describedby="button-addon2">
-    <button class="btns" type="button" id="button-addon2" (click)="OnAdd(inputElement)">Button</button>
-  </div>
-  <h5>Todo items</h5>
-  <ul class="list-group todo-items__container">
-    <li *ngFor="let todo of todos" class="list-group-item d-flex justify-content-between">
-      <div class="w-75">
-        <input class="form-check-input me-1" type="checkbox" [(ngModel)]="todo.done" (ngModelChange)="onDoneChange(todo)">
-        <input class="form-check-label Inp w-75"
-               [ngClass]="{'todo-title--readonly' : !todo.isEditing}"
-               [readOnly]="!todo.isEditing"
-               [value]="todo.title"
-               (keyup.enter)="OnSave(todo, todoTitle.value)"
-               #todoTitle
-        />
-      </div>
-
-      <div *ngIf="todo.isEditing" class="action-container">
-        <i class="bi bi-x-circle me-2 cancel-icon" (click)="OnCancel(todo)"></i>
-        <i class="bi bi-floppy save-icon" (click)="OnSave(todo, todoTitle.value)"></i>
-      </div>
-
-      <div *ngIf="!todo.isEditing" class="action-container">
-        <i class="bi bi-pencil me-2 edit-icon" (click)="OnEdit(todo)"></i>
-        <i class="bi bi-trash delete-icon" (click)="OnDelete(todo.id)"></i>
-      </div>
-
-    </li>
+<div class="area">
+  <!-- Your existing background circles -->
+  <ul class="circles">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
   </ul>
 
+  <!-- Your main content -->
+  <div class="container-sm border border-dark rounded mt-4 p-4">
+    <div class="input-group mb-3">
+      <input #inputElement type="text" class="form-control" [placeholder]="placeholder" (keyup.enter)="OnAdd(inputElement)" aria-describedby="button-addon2">
+      <button class="btns" type="button" id="button-addon2" (click)="OnAdd(inputElement)">Add</button>
+      <button class="btns delete-all-btn" type="button" (click)="onDeleteAll()">Delete All</button>
+    </div>
+
+    <h5>Todo items</h5>
+    <ul class="list-group todo-items__container">
+      <li *ngFor="let todo of todos" [ngClass]="{'green': todo.done}" class="list-group-item d-flex justify-content-between">
+        <div class="w-75">
+          <input class="form-check-input me-1" type="checkbox" [(ngModel)]="todo.done" (ngModelChange)="onDoneChange(todo)">
+          <input class="form-check-label Inp w-75"
+                 [ngClass]="{
+                   'todo-title--readonly': !todo.isEditing,
+                   'green': todo.done
+                 }"
+                 [readOnly]="!todo.isEditing"
+                 [value]="todo.title"
+                 (keyup.enter)="OnSave(todo, todoTitle.value)"
+                 #todoTitle
+          />
+        </div>
+
+        <div *ngIf="todo.isEditing" class="action-container">
+          <i class="bi bi-x-circle me-2 cancel-icon" (click)="OnCancel(todo)"></i>
+          <i class="bi bi-floppy save-icon" (click)="OnSave(todo, todoTitle.value)"></i>
+        </div>
+
+        <div *ngIf="!todo.isEditing" class="action-container">
+          <i class="bi bi-pencil me-2 edit-icon" (click)="OnEdit(todo)"></i>
+          <i class="bi bi-trash delete-icon" (click)="OnDelete(todo.id)"></i>
+        </div>
+      </li>
+    </ul>
+
+
+  </div>
 </div>
